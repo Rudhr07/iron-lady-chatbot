@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON LADY - Elevating Women to Leadership</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #F3F4F5;
+            overflow-x: hidden;
+            background: #F3F4F5;
+        }
+
+        /* Header */
+        header {
+            background: #242024;
+            color: #F3F4F5;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-bottom: 3px solid #E30220;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #F3F4F5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #E30220;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #E30220 0%, #BF0000 100%);
+            color: #F3F4F5;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: #000;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            background: #374151;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #242024;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: #DDDDDD;
+            border: 2px solid #242024;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #E30220;
+            box-shadow: 0 5px 20px rgba(227, 2, 32, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #E30220;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #E30220;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #242024;
+            line-height: 1.6;
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 80px 0;
+            background: #F3F4F5;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: #DDDDDD;
+            border: 2px solid #242024;
+            color: #242024;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: left;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .program-card:hover {
+            border-color: #E30220;
+            box-shadow: 0 5px 20px rgba(227, 2, 32, 0.1);
+        }
+
+        .program-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #E30220;
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: #F3F4F5;
+        }
+
+        .testimonial-card {
+            background: #DDDDDD;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            border-left: 4px solid #E30220;
+        }
+
+        .testimonial-card .rating {
+            color: #ffa500;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10000;
+        }
+
+        .chatbot-trigger {
+            width: 60px;
+            height: 60px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .chatbot-trigger:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        .chatbot-icon {
+            font-size: 24px;
+            color: white;
+        }
+
+        .chatbot-popup {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 380px;
+            height: 550px;
+            background: #DDDDDD;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease;
+            border: 2px solid #E30220;
+        }
+
+        .chatbot-popup.active {
+            display: flex;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .chatbot-header {
+            background: #E30220;
+            color: #F3F4F5;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .chatbot-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #F3F4F5;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            font-size: 14px;
+        }
+
+        .user {
+            align-self: flex-end;
+            background: #E30220;
+            color: #F3F4F5;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot {
+            align-self: flex-start;
+            background: #DDDDDD;
+            color: #242024;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #BF0000;
+        }
+
+        .typing {
+            align-self: flex-start;
+            background: #DDDDDD;
+            color: #242024;
+            font-style: italic;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #BF0000;
+        }
+
+        .timestamp {
+            font-size: 10px;
+            color: #242024;
+            margin-top: 4px;
+            text-align: right;
+        }
+
+        .dots::after {
+            content: '';
+            animation: dots 1.5s steps(3, end) infinite;
+        }
+
+        @keyframes dots {
+            0% { content: ''; }
+            33% { content: '.'; }
+            66% { content: '..'; }
+            100% { content: '...'; }
+        }
+
+        .quick-buttons {
+            display: flex;
+            gap: 6px;
+            padding: 15px;
+            background: #DDDDDD;
+            border-top: 1px solid #BF0000;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-btn {
+            background: #F3F4F5;
+            border: 1px solid #E30220;
+            color: #E30220;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .quick-btn:hover {
+            background: #E30220;
+            color: #F3F4F5;
+        }
+
+        .chatbot-input {
+            display: flex;
+            border-top: 1px solid #BF0000;
+            background: #DDDDDD;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            border: none;
+            padding: 15px;
+            font-size: 14px;
+            border-radius: 0;
+            outline: none;
+            background: #F3F4F5;
+            color: #242024;
+        }
+
+        .chatbot-input button {
+            background: #E30220;
+            color: #F3F4F5;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .chatbot-input button:hover {
+            background: #BF0000;
+        }
+
+        /* Notification badge */
+        .notification-badge {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #dc2626;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .chatbot-popup {
+                width: 300px;
+                height: 480px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='images/iron-lady-logo.png') }}" alt="IRON LADY" style="height: 48px; margin-right: 10px; vertical-align: middle;">
+                IRON LADY
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Elevating Women to Leadership</h1>
+            <p>Join 78,000+ women leaders who transformed their careers with IRON LADY's breakthrough programs</p>
+            <a href="#programs" class="cta-button">Explore Programs</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="about">
+        <div class="container">
+            <h2 class="section-title">Why Choose IRON LADY</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Business War Tactics</h3>
+                    <p>Learn to win without fighting. Master strategies to overcome biases and politics in the business world.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Fast-track Growth</h3>
+                    <p>Achieve breakthrough results with our results-focused approach and transformative strategies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>78,000+ Women Ecosystem</h3>
+                    <p>Join a supportive community of ambitious women leaders sharing success tactics and celebrating achievements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Winning Mindset</h3>
+                    <p>Develop an unapologetic winning mindset that helps you maximize opportunities without compromise.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Expertise</h3>
+                    <p>Learn from global practitioners, entrepreneurs, and CEOs who share their proven methodologies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certified Programs</h3>
+                    <p>Get industry-recognized certifications that add value to your professional profile and career growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2 class="section-title">Our Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3>Leadership Essentials Program</h3>
+                    <p>Learn to be unapologetically ambitious. Master the art of maximizing opportunities and dealing with office politics and biases.</p>
+                    <div style="margin-top: 20px;">
+                        <strong>Duration:</strong> 4-6 weeks<br>
+                        <strong>Mode:</strong> Online + Offline workshops
+                    </div>
+                </div>
+                <div class="program-card">
+                    <h3>100 Board Members Program</h3>
+                    <p>Break through career stagnation with innovative techniques to fast-track your overdue growth and reach leadership positions.</p>
+                    <div style="margin-top: 20px;">
+                        <strong>Duration:</strong> 8-12 weeks<br>
+                        <strong>Mode:</strong> Online + Mentorship
+                    </div>
+                </div>
+                <div class="program-card">
+                    <h3>Master of Business Warfare</h3>
+                    <p>Committed to reaching C-suite? Learn cutting-edge business warfare tactics for breakthrough career advancement.</p>
+                    <div style="margin-top: 20px;">
+                        <strong>Duration:</strong> 3-6 months<br>
+                        <strong>Mode:</strong> Comprehensive Online Program
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Leaders Say</h2>
+            <div class="testimonial-card">
+                <div class="rating">★★★★★</div>
+                <p>"IRON LADY program gave me excellent support for my success. When I started my career again, I was clueless on how to navigate the corporate world. This platform guided me perfectly."</p>
+                <strong>- Chaya Devi Rudraraju</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2025 IRON LADY. All Rights Reserved.</p>
+            <p>Elevating a Million Women to the Top</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-trigger" onclick="toggleChatbot()">
+            <i class="fas fa-comments chatbot-icon"></i>
+            <div class="notification-badge">!</div>
+        </div>
+        
+        <div class="chatbot-popup" id="chatbotPopup">
+            <div class="chatbot-header">
+                <div style="display: flex; align-items: center; flex-direction: column; align-items: flex-start;">
+                    <div style="display: flex; align-items: center;">
+                        <img src="{{ url_for('static', filename='images/iron-lady-logo.png') }}" alt="IRON LADY" style="height: 24px; margin-right: 8px;">
+                        <h3>IRON LADY ASSISTANT</h3>
+                    </div>
+                    <div style="font-size: 12px; color: #DDDDDD; margin-left: 32px;">Built by Rudhr Chauhan</div>
+                </div>
+                <button class="chatbot-close" onclick="toggleChatbot()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chatbot-body" id="chatbotBody">
+                <!-- Messages will be added here -->
+            </div>
+            
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="sendQuickMessage('What programs does IRON LADY offer?')">Programs</button>
+                <button class="quick-btn" onclick="sendQuickMessage('What is the program duration?')">Duration</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Who are the mentors/coaches?')">Mentors</button>
+            </div>
+            
+            <form class="chatbot-input" id="chatForm">
+                <input type="text" id="userInput" placeholder="Ask about IRON LADY..." required autocomplete="off">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let chatbotOpen = false;
+
+        function toggleChatbot() {
+            const popup = document.getElementById('chatbotPopup');
+            const badge = document.querySelector('.notification-badge');
+            
+            chatbotOpen = !chatbotOpen;
+            
+            if (chatbotOpen) {
+                popup.classList.add('active');
+                badge.style.display = 'none';
+                if (document.getElementById('chatbotBody').children.length === 0) {
+                    showWelcomeMessage();
+                }
+            } else {
+                popup.classList.remove('active');
+            }
+        }
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        }
+
+        function scrollToBottom() {
+            const chatBody = document.getElementById('chatbotBody');
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function showWelcomeMessage() {
+            const chatBody = document.getElementById('chatbotBody');
+            const welcomeDiv = document.createElement("div");
+            welcomeDiv.classList.add("message", "bot");
+            welcomeDiv.innerHTML = `Hi! I am your IRON LADY ASSISTANT. 👋<br><br>I'm here to help you with information about IRON LADY's leadership programs, mentors, duration, and more.<br><br>How can I assist you today?<div class="timestamp">${getCurrentTime()}</div>`;
+            chatBody.appendChild(welcomeDiv);
+            scrollToBottom();
+        }
+
+        function sendQuickMessage(message) {
+            document.getElementById("userInput").value = message;
+            document.getElementById("chatForm").dispatchEvent(new Event('submit'));
+        }
+
+        document.getElementById("chatForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const input = document.getElementById("userInput");
+            const userMessage = input.value.trim();
+            if (!userMessage) return;
+
+            // Clear input immediately
+            input.value = "";
+
+            const chatBody = document.getElementById('chatbotBody');
+
+            // Show user message with timestamp
+            const userDiv = document.createElement("div");
+            userDiv.classList.add("message", "user");
+            userDiv.innerHTML = `${userMessage}<div class="timestamp">${getCurrentTime()}</div>`;
+            chatBody.appendChild(userDiv);
+            scrollToBottom();
+
+            // Create typing indicator
+            const typingDiv = document.createElement("div");
+            typingDiv.classList.add("message", "typing");
+            typingDiv.innerHTML = "<span class='dots'></span>";
+            chatBody.appendChild(typingDiv);
+            scrollToBottom();
+
+            // Start request
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: "user_input=" + encodeURIComponent(userMessage)
+            });
+
+            // Replace typing indicator with bot response
+            const botDiv = document.createElement("div");
+            botDiv.classList.add("message", "bot");
+            chatBody.replaceChild(botDiv, typingDiv);
+
+            // Stream response letter by letter smoothly
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder("utf-8");
+            let fullResponse = "";
+            const timestamp = getCurrentTime();
+            let displayedText = "";
+            let isTyping = false;
+
+            // Collect response chunks and queue them for letter-by-letter display
+            async function collectAndDisplay() {
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    
+                    const chunk = decoder.decode(value, { stream: true });
+                    fullResponse += chunk;
+                    
+                    // Start displaying if not already typing
+                    if (!isTyping) {
+                        isTyping = true;
+                        typeLetterByLetter();
+                    }
+                }
+            }
+
+            function typeLetterByLetter() {
+                if (displayedText.length < fullResponse.length) {
+                    displayedText = fullResponse.substring(0, displayedText.length + 1);
+                    botDiv.innerHTML = displayedText + `<div class="timestamp">${timestamp}</div>`;
+                    scrollToBottom();
+                    setTimeout(typeLetterByLetter, 20); // 20ms per character for smooth typing
+                } else {
+                    // Check if more content is available
+                    setTimeout(typeLetterByLetter, 50);
+                }
+            }
+
+            // Start collecting response
+            collectAndDisplay();
+        });        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
